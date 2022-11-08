@@ -15,7 +15,7 @@ class RecipeCard extends HTMLElement {
     // A3. TODO - Create a style element - This will hold all of the styles for the Web Component
     let style = document.createElement('style');
      // A4. TODO - Insert all of the styles from cardTemplate.html into the <style> element you just made
-    style.innerHTHML = `
+    style.textContent = `
     * {
     font-family: sans-serif;
     margin: 0;
@@ -142,7 +142,7 @@ class RecipeCard extends HTMLElement {
   </div>
   <time>${data.lengthTime}</time>
   <p class="ingredients">
-    Comma, Separated, List, of, Ingredients
+    ${data.ingredients}
   </p>`;
   if(data.rating==0){
     let image = article2.querySelector('[alt="5 stars"]');
