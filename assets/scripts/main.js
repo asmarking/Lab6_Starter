@@ -42,7 +42,6 @@ function addRecipesToDocument(recipes) {
   //            each <recipe-card> with that recipe data using element.data = ...
   //            Append each element to <main>
     for(let i = 0; i < recipes.length;i++){
-      console.log(i);
       let currRecipe = recipes[i];
       let recipeCard = document.createElement('recipe-card');
       recipeCard.data = currRecipe;
@@ -79,7 +78,6 @@ function initFormHandler() {
   // Steps B4-B9 will occur inside the event listener from step B3
   // B4. TODO - Create a new FormData object from the <form> element reference above
   let formData = new FormData(form);
-  alert(formData.get('imgSrc'));
   // B5. TODO - Create an empty object (I'll refer to this object as recipeObject to
   //            make this easier to read), and then extract the keys and corresponding
   //            values from the FormData object and insert them into recipeObject
@@ -93,7 +91,6 @@ function initFormHandler() {
   recipeObject.organization = formData.get('organization');
   recipeObject.titleLink = formData.get('titleLnk');
   recipeObject.titleTxt = formData.get('titleTxt');
-  alert(recipeObject.imgSrc);
   // B6. TODO - Create a new <recipe-card> element
   let Recipe = document.createElement('recipe-card');
   // B7. TODO - Add the recipeObject data to <recipe-card> using element.data
@@ -117,7 +114,7 @@ function initFormHandler() {
   let clearz = form.querySelector('[type="button"]');
   clearz.addEventListener('click',function(){
     localStorage.clear();
-    //form.innerHTML = "";
+    form.innerHTML = "";
   });
 
 }
