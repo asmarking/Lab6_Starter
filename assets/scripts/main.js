@@ -42,6 +42,7 @@ function addRecipesToDocument(recipes) {
   //            each <recipe-card> with that recipe data using element.data = ...
   //            Append each element to <main>
     for(let i = 0; i < recipes.length;i++){
+      console.log(i);
       let currRecipe = recipes[i];
       let recipeCard = document.createElement('recipe-card');
       recipeCard.data = currRecipe;
@@ -74,20 +75,25 @@ function initFormHandler() {
   let butt = form.querySelector('button')
   // B3. TODO - Add an event listener for the 'submit' event, which fires when the
   //            submit button is clicked
-  console.log("fuck");
-  form.addEventListener('submit',function() {
+  butt.addEventListener('click',function() {
   // Steps B4-B9 will occur inside the event listener from step B3
   // B4. TODO - Create a new FormData object from the <form> element reference above
   let formData = new FormData(form);
-  console.log(formData);
+  alert(formData.get('imgSrc'));
   // B5. TODO - Create an empty object (I'll refer to this object as recipeObject to
   //            make this easier to read), and then extract the keys and corresponding
   //            values from the FormData object and insert them into recipeObject
   let recipeObject = {};
-  for (const [key, value] of Object.entries(formData)) {
-    recipeObject[key] = value;
-    console.log("gay");
-  }
+  recipeObject.imgSrc = formData.get('imgSrc');
+  recipeObject.imgAlt = formData.get('imgAlt');
+  recipeObject.ingredients = formData.get('ingredients');
+  recipeObject.lengthTime = formData.get('lengthTime');
+  recipeObject.rating = formData.get('rating');
+  recipeObject.numRatings = formData.get('numRatings');
+  recipeObject.organization = formData.get('organization');
+  recipeObject.titleLink = formData.get('titleLnk');
+  recipeObject.titleTxt = formData.get('titleTxt');
+  alert(recipeObject.imgSrc);
   // B6. TODO - Create a new <recipe-card> element
   let Recipe = document.createElement('recipe-card');
   // B7. TODO - Add the recipeObject data to <recipe-card> using element.data
@@ -97,11 +103,6 @@ function initFormHandler() {
   mainElement.appendChild(Recipe);
   // B9. TODO - Get the recipes array from localStorage, add this new recipe to it, and
   //            then save the recipes array back to localStorage
-  /*if (localStorage.getItem("recipes") === null) {
-    let rezipe = new Array();
-    let Json = JSON.stringify(rezipe);
-    localStorage.setitem('recipes',Json);
-  }*/
   let arrayRec = JSON.parse(localStorage.getItem('recipes'));
   arrayRec.push(recipeObject);
   saveRecipesToStorage(arrayRec);
